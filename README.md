@@ -7,14 +7,13 @@ This repository contains a simulation of the classic **Ball and Beam system**, a
 </p>
 
 ## Features
-
-- Simulated using **nonlinear dynamics** based on physical equations.
-- Implemented in **Python** using:
+- Simulated using nonlinear dynamics based on physical equations.
+- Implemented in Python using:
   - `numpy` for numerical operations,
   - `matplotlib` for visualization.
 - Includes two state-feedback control strategies:
-  - **Pole Placement**
-  - **Linear Quadratic Regulator (LQR)**
+  - Pole Placement
+  - Linear Quadratic Regulator (LQR)
 
 ## Objective
 The goal of the simulation is to **control the position of the ball** so that it stays at a specific distance from the center of the beam (setpoint tracking). The beam angle is the only control input, adjusted using feedback from the full system state.

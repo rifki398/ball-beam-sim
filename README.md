@@ -3,7 +3,7 @@
 This repository contains a simulation of the classic **Ball and Beam system**, a widely used benchmark in control system studies. The system models a ball rolling on a beam, where the beam's angle is controlled to achieve a desired ball position.
 
 <p align="center">
-  <img src="figure/ball_beam.png" alt="ball_beam" style="width:75%; height:auto;"/>
+  <img src="figure/ball_beam.png" alt="ball_beam" style="width:80%; height:auto;"/>
 </p>
 
 ## Features
@@ -17,11 +17,9 @@ This repository contains a simulation of the classic **Ball and Beam system**, a
   - **Linear Quadratic Regulator (LQR)**
 
 ## Objective
-
 The goal of the simulation is to **control the position of the ball** so that it stays at a specific distance from the center of the beam (setpoint tracking). The beam angle is the only control input, adjusted using feedback from the full system state.
 
 ## Model Overview
-
 The nonlinear dynamics of the system are derived from physics, involving:
 - Translational motion of the ball,
 - Rotational dynamics of the beam,
@@ -34,15 +32,15 @@ The system states are:
 - \( x_3 \): Beam angular velocity
 
 ## How To Run
-Run the `main` script.
+Running the main.py script will automatically execute the full simulation, applying both Pole Placement and LQR controllers, and plot the results for comparison.
 <p align="center">
   <img src="figure/results.png" alt="results" style="width:85%; height:auto;"/>
 </p>
-## 📊 Simulation Results
+You can easily modify:
+- The desired ball position (setpoint),
+- Initial conditions,
+- Controller parameters (e.g., pole locations or LQR weights).
 
-The simulation produces plots comparing ball position and beam angle over time under both control strategies. These help visualize tracking performance and control response.
-
-### Example Outputs:
-- **Ball Position vs Time**
-- **Beam Angle vs Time**
+## Reference
+For the model explanation, see [Virseda (2024)](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://core.ac.uk/download/pdf/289940555.pdf&ved=2ahUKEwjlvZ3bjsmOAxXBd2wGHWyvD4sQFnoECBcQAQ&usg=AOvVaw2mHZUEjnCKbGnwOsch1QZt).
 

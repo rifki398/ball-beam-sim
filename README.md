@@ -3,7 +3,7 @@
 This repository contains a simulation of the classic **Ball and Beam system**, a widely used benchmark in control system studies. The system models a ball rolling on a beam, where the beam's angle is controlled to achieve a desired ball position.
 
 <p align="center">
-  <img src="figure/ball_beam.png" alt="ball_beam" style="width:80%; height:auto;"/>
+  <img src="figure/ball_beam.png" alt="ball_beam" style="width:70%; height:auto;"/>
 </p>
 
 ## Features

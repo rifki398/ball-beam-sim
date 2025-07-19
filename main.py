@@ -1,42 +1,50 @@
-from model.ball_beam import *
-import matplotlib.pyplot as plt
+from model.ball_beam import BallAndBeam
+from controller.controller import *
+from plot_data import *
+
 import os
 
 os.system("cls||clear")
 
-dt = 0.01         # time step
+# Simulation Set Up
+dt = 0.01
 T = 10            
 n_steps = int(T/dt)
 
-# Initialize states: [x, x_dot, theta, theta_dot]
-x = np.array([0., 0.0, np.deg2rad(0.), np.deg2rad(0.)])
-u = 0.0
+# Initialize states: [x, x_dot, theta, theta_dot] and control law [u]
+x1 = np.array([0.2, 0.0, np.deg2rad(0.), np.deg2rad(0.)])
+x2 = x1.copy()
 
-# Simpan hasil untuk plot
-data_sim = np.zeros((n_steps, 5))  # [t, x, x_dot, theta, theta_dot]
+# Reference states
+x1ref = np.array([0., 0., 0., 0.])
+x2ref = x1ref.copy()
+
+# Initialize Ball and Beam
+plant1 = BallAndBeam(x1,n_steps)
+plant2 = BallAndBeam(x2,n_steps)
+
+# Linearized model
+A,B = plant1.linearized_model()
 
 for i in range(n_steps):
     t = i * dt
-    data_sim[i] = [t, *x]
-    x = rk4_step(ball_beam_dynamic, x, u, dt)
 
-plt.figure(figsize=(10, 6))
+    # LQR Control Law
+    K_lqr = LQR_Control_Law(A,B)
+    K_pp = PP_Control_Law(A,B)
 
-plt.subplot(2,1,1)
-plt.plot(data_sim[:, 0], data_sim[:, 1], label='x (position of ball)')
-# plt.plot(data_sim[:, 0], data_sim[:, 2], label='x_dot (velocity)')
-plt.xlabel('Time [s]')
-plt.ylabel('Ball position (m)')
-plt.grid(True)
-plt.legend()
+    u1 = -K_pp @ (x1 - x1ref)
+    u2 = -K_lqr @ (x2 - x2ref)
 
-plt.subplot(2,1,2)
-plt.plot(data_sim[:, 0], np.rad2deg(data_sim[:, 3]), label='theta (beam angle)')
-# plt.plot(data_sim[:, 0], np.degrees(data_sim[:, 4]), label='theta_dot [deg/s]')
-plt.xlabel('Time [s]')
-plt.ylabel('Beam angle (deg)')
-plt.grid(True)
-plt.legend()
+    x1 = plant1.dynamic(u1,t,dt)
+    x2 = plant2.dynamic(u2,t,dt)
+    
+    # Change the reference position at t = 5
+    if t >= 5:
+        x1ref[0] = 0.3
+        x2ref[0] = 0.3
 
-plt.tight_layout()
-plt.show()
+data_sim1 = plant1.data_sim
+data_sim2 = plant2.data_sim
+
+plot_data((data_sim1,data_sim2),('Pole Placement','LQR'))

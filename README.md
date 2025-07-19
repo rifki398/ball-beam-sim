@@ -26,10 +26,10 @@ The nonlinear dynamics of the system are derived from physics, involving:
 - Gravity and coupling effects.
 
 The system states are:
-- \( x_0 \): Ball position on the beam  
-- \( x_1 \): Ball velocity  
-- \( x_2 \): Beam angle (radians)  
-- \( x_3 \): Beam angular velocity
+- x₀: ball position
+- x₁: ball velocity
+- x₂: beam angle
+- x₃: beam angular velocity
 
 ## How To Run
 Running the main.py script will automatically execute the full simulation, applying both Pole Placement and LQR controllers, and plot the results for comparison.

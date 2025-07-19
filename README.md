@@ -36,10 +36,13 @@ Running the main.py script will automatically execute the full simulation, apply
 <p align="center">
   <img src="figure/results.png" alt="results" style="width:85%; height:auto;"/>
 </p>
+
+
 You can easily modify:
-- The desired ball position (setpoint),
-- Initial conditions,
-- Controller parameters (e.g., pole locations or LQR weights).
+- The desired ball position (setpoint)
+- Initial conditions
+- Controller parameters (e.g., pole locations or LQR weights) 
+
 
 ## Reference
 For the model explanation, see [Virseda (2024)](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://core.ac.uk/download/pdf/289940555.pdf&ved=2ahUKEwjlvZ3bjsmOAxXBd2wGHWyvD4sQFnoECBcQAQ&usg=AOvVaw2mHZUEjnCKbGnwOsch1QZt).
